@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <style>
+        .reminder{
+            background-color: lightgreen;
+            padding: 20px;
+            width: 500px;
+            border-radius: 10px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <br>
+    <div class="reminder containers">
+        Dear {{ data['name'] }},<br>Don't forget to visit our app today.
+    </div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <style>
+        .container{
+            background-color: bisque;
+            padding: 20px;
+            width: 500px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <br>
+    <h3 align="center">Hey {{ data['name'] }}, have a lot at the monthly report.</h3><br>
+    <div class="container" align="center">
+        <h2>Monthly Activity Report - {{start_date.strftime('%B %Y')}}</h2><br>
+        <h4>Number of books issued: {{granted_count}}</h4>
+        <h4>Number of books returned: {{completed_count}}</h4>
+    </div>
+        
+</body>
+</html>

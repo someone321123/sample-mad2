@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Books</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+        
+    <div id="app">
+
+
+        <!-- NavBar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-info" style="padding: 20px 0px 10px;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#" style="font-size: 24px; color:black; padding-left: 20px;"><b>LIBRARY</b></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <h2 class="d-flex mx-auto my-2 my-lg-0" align="center" style="color: white;">Welcome {{ user.username }} </h2>
+                    <ul class="navbar-nav ml-auto">
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-light" href="{{ url_for('home', userid=current_user.id) }}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="btn btn-secondary nav-link active">My Books</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"></a>
+                        </li>
+                        
+                        <li class="nav-item">
+                          <a class="btn btn-primary mb-3 nav-link active" aria-current="page" href="/logout">LOGOUT</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+
+
+        <div class="sections">
+            <br>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-3"><h4>Pending Requests:</h4></div>
+            </div>
+
+            {% for request in pending_requests %}
+            <div class="container">
+                <div class="row" align="center">
+                    {% for book in books %}
+                        {% if book.book_id == request.book_id %}
+                            <div class="col-4" style="font-size: 22px;">Book Name: {{ book.book_name }}</div>
+                        {% endif %}
+                    {% endfor %}
+
+                    <div class="col-3" style="font-size: 22px;">No of Days: {{ request.no_of_days }}</div>
+                    <div class="col-3" style="font-size: 22px;">Status: REQUEST PENDING</div>
+                    <div class="col-2">
+                        <form action="/cancel-request" method="POST">
+                            <input type="hidden" name="req_id" value="{{ request.req_id }}">
+                            <button type="submit" class="btn btn-danger">Cancel Request</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            <br>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-3"><h4>Granted Requests:</h4></div>
+            </div>
+
+
+            {% for request in granted_requests %}
+    <div class="container" style="background-color: lightgreen;">
+        <div class="row" align="center">
+
+            {% for book in books %}
+                {% if book.book_id == request.book_id %}
+                    <div class="col-4" style="font-size: 22px;">Book Name: {{ book.book_name }}</div>
+                {% endif %}
+            {% endfor %}
+
+
+            <div class="col-3" style="font-size: 22px;">Issued Date: {{ request.date_issued.strftime('%d.%m.%Y') }}</div>
+            <div class="col-3" style="font-size: 22px;">Return Date: {{ request.return_date.strftime('%d.%m.%Y') }}</div>
+
+            <div class="col-1">
+                {% for book in books %}
+                    {% if book.book_id == request.book_id %}
+                    <router-link :to="{ path: '/read-book', query: {BookName: '{{book.book_name}}'}}" type="submit" class="btn btn-primary">View</router-link>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="col-1">
+                <form action="/user-revoke-request/{{ request.req_id }}" method="POST">
+                    <button type="submit" class="btn btn-danger">Return</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    {% endfor %}
+
+
+
+
+    
+    <br>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-3"><h4>Completed Requests:</h4></div>
+    </div>
+
+    {% for request in completed_requests %}
+    <div class="container" style="background-color: lightpink;">
+        <div class="row" align="center">
+            {% for book in books %}
+                {% if book.book_id == request.book_id %}
+                    <div class="col" style="font-size: 22px;">Book Name: {{ book.book_name }}</div>
+                {% endif %}
+            {% endfor %}
+
+            <div class="col" style="font-size: 22px;">Issued Date: {{ request.date_issued.strftime('%d.%m.%Y') }}</div>
+            <div class="col" style="font-size: 22px;">Returned Date: {{ request.date_returned.strftime('%d.%m.%Y') }}</div>
+        </div>
+    </div>
+    {% endfor %}
+        </div>
+
+        <router-view></router-view>
+
+    </div>
+
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
+    <script type="text/javascript" src="../static/js/mybooks.js"></script>
+</body>
+</html>

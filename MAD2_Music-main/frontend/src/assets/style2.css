@@ -1,0 +1,208 @@
+
+body{
+    background-color: #032641;
+  }
+  #logo{
+    margin-left: 10px;
+    float: left; 
+  }
+#prof{
+  margin-left: 10px;
+  border-radius: 50%;
+  float: right;
+  margin-right:0px
+}
+#ip1,option{
+  color:#032641;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  font-size: large ;
+  text-align: center;
+  display: inline;
+  margin-bottom:5px;
+  align-self: auto;
+  border-radius: 18px;
+  background: #55718b;
+  height: 25px;
+  width: 400px
+  }
+  ::placeholder {
+    color: #a2aebe;
+    opacity: 1; /* Firefox */
+  }
+  #ip2{
+    color:#D9D9D9;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: large ;
+    text-align: center;
+    display: inline;
+    margin-bottom:5px;
+    align-self: auto;
+    border-radius: 18px;
+    background: #885058;
+    height: 40px;
+    width:200px
+  }
+#header{
+  display: flex;
+  align-items: center;
+  width: 1100px;
+  padding: auto;
+  box-shadow: #032641;
+  color:#D9D9D9
+}
+button{
+  background-color: #032641;
+  border: none;
+  color: #D9D9D9;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+#home{
+  height: 40px;
+  color: #D9D9D9;
+}
+#nav{
+  display: flex;
+  padding-left: 0;
+}
+.icons{
+  margin-left: 10px;
+  margin-top: 5px;
+  padding:0
+}
+#nav li,li{
+  list-style: none;
+  padding: 0px;
+  margin-left:0px;
+  width: 85px;
+}
+#genre, #artist, #album, #cplay, #playlist{
+  display: inline;
+  float: left;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+}
+audio{
+  float: left; 
+}
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-panel {
+  background-color: #a2aebe;
+  color: #a2aebe;
+}
+#parent {
+  align-content: center;
+  margin-left:190px;
+  width: 70%;
+  }
+  h3{text-align: center;
+    font-size: large;
+    padding: 10px;
+    margin-right: 20px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: #D9D9D9;
+    background: #55718b;
+    border-radius: 10px;
+  }
+  h4 { 
+    float: left;
+    display: inline;
+    color: #D9D9D9;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #55718b; 
+    border-radius: 10px;
+    margin-left: 40px;
+    margin-right: 40px
+  }
+  span {
+    color: #885058;
+    font-weight: bold;
+  }
+  h1 { 
+    float: left;
+    display: inline;
+    color: #D9D9D9;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #55718b; 
+    border-radius: 10px;
+    margin-left: 20px;
+    margin-right: 40px
+  }
+  h2{
+    display: inline;
+    color: #D9D9D9;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #885058; 
+    border-radius: 10px;
+    margin-left: 50px;
+margin-right: 40px;}
+a:visited,a:link{
+  color: #D9D9D9;
+  text-decoration: none;
+}
+input::file-selector-button {
+  display: inline;
+  color: #032641;
+  font-family:Georgia, 'Times New Roman', Times, serif ;
+  background-color: #a2aebe;
+  border-radius: 10px;
+  margin-left: 2px;
+  margin-top: 6.5px;
+}
+label{
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 2px;
+  background-color: #885058; 
+  border-radius:10px;
+  color:#D9D9D9;
+  font-size: 25px;
+  white-space: nowrap;
+  width: fit-content
+}
+tr,td{
+  color:#D9D9D9;
+  font-size: 25px;
+}
+table {
+  width:auto;
+  border-spacing: 10px;
+  float: left;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 10px
+  
+}
+h6{
+  display: inline;
+  color: #032641;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #a2aebe; 
+  border-radius: 10px;
+margin:2px;
+margin-left: 10px;}
+  
