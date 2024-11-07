@@ -1,0 +1,107 @@
+steps
+
+s1]
+    Make View (<template> ...)
+
+s2]
+    Add in routes  (under header by importing the Componet)
+
+s3]
+    call api in Componet
+    <script>
+
+
+## TODO
+steps
+
+s1]
+    Make View (<template> ...)
+
+s2]
+    Add in routes  (under header by importing the Componet)
+
+s3]
+    call api in Componet
+    <script>
+
+
+## TODO
+
+[x] landing page (done)
+
+[x] Admin pages
+    - password security using `Flask-Bcrypt` (done)
+    - login and logout (done)
+        session-based authentication (Flask-Security) 
+        or 
+        stateless, token-based authentication (JWT). for  Vue.js frontend, JWT-based authentication (done)
+    - Approve Sponsor (done)
+    
+    - Flag the User (done)
+
+
+[] Sponsor pages
+        - CURD campaign (done)
+        - Search Influencer (done)
+        - Download CSV (done)
+        - CURD adRequest (done)
+
+        -  They can accept ad requests by influencers for public campaigns (done)
+
+
+[] Influencer pages
+
+    - search for public campaigns (done)
+    - view adRequest (done) ,
+    - negotiate the “payment_amount (done)
+
+    - An influencer can update their profile page, which is publicly visible. (done)
+
+
+
+
+[] Backend 
+    - chache (done)
+    - email / notification / batch work (done)
+    - Monthly Activity Report (done)
+    - Daily reminders (done)
+    
+`celery -A app.celery worker --loglevel=info`
+`celery -A app.celery beat --loglevel=info`
+`celery -A app.celery worker --loglevel=info --pool=solo`
+[x] landing page (done)
+
+[x] Admin pages
+    - password security using `Flask-Bcrypt` (done)
+    - login and logout (done)
+        session-based authentication (Flask-Security) 
+        or 
+        stateless, token-based authentication (JWT). for  Vue.js frontend, JWT-based authentication (done)
+    - Approve Sponsor (done)
+
+
+[] Sponsor pages
+        - CURD campaign (done)
+        - Search Influencer (done)
+        - Download CSV (done)
+        - CURD adRequest (done)
+
+
+[] Influencer pages
+
+    - search for public campaigns (done)
+    - view adRequest (done) ,
+    - negotiate the “payment_amount (done)
+
+
+[] Backend 
+    - chache
+    - email / notification / batch work
+    
+start redis server
+`python app.py`
+` npm run dev`
+`celery -A app.celery worker --loglevel=info`
+`celery -A app.celery beat --loglevel=info`
+`celery -A app.celery worker --loglevel=info --pool=solo`
+`pytest --maxfail=1 --disable-warnings -q`
