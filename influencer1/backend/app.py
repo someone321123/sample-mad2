@@ -18,8 +18,6 @@ from api import api
 app = Flask(__name__)
 app.config.from_object(Config)
 
-
-db.init_app(app)
 init_db(app=app)
 cache.init_app(app)
 jwt = JWTManager(app)

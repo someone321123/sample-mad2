@@ -19,14 +19,14 @@ class Config:
     MAIL_SERVER = 'smtp.gmail.com'
     MAIL_PORT = 587
     MAIL_USE_TLS = True
-    MAIL_USERNAME = 'ojadhav@student.gitam.edu'
+    MAIL_USERNAME = '23f2005059@ds.study.iitm.ac.in'
     MAIL_PASSWORD = 'mwrziancjfhtxvbo'
     MAIL_USE_TLS = True
     MAIL_USE_SSL = False
 
     # Celery configuration
     CELERY_BROKER_URL = 'redis://localhost:6379/0'
-    CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+    CELERY_RESULT_BACKEND = 'redis://localhost:6379/1'
     CELERY_TIMEZONE = 'Asia/Kolkata'
     CELERY_BEAT_SCHEDULE = {
         'send-daily-reminders': {
