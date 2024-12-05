@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borrow Section</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+
+<div id="app">
+
+    <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="padding: 20px 0px 10px;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#" style="font-size: 24px; color:yellow; padding-left: 24px;"><b>Librarian Dashboard</b></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <h2 class="d-flex mx-auto my-2 my-lg-0" align="center" style="color: white;">Welcome Librarian</h2>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="btn btn-warning nav-link active" href="/librarian" style="color: black;">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-secondary nav-link active" href="#" >Borrow Section</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-info nav-link active" href="{{ url_for('lib_summary') }}" style="color: black;">Summary</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"></a>
+                </li>
+                <li class="nav-item">
+                  <a class="btn btn-primary mb-3 nav-link active" aria-current="page" href="/logout">LOGOUT</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- End of Navbar -->
+
+
+
+<div class="sections">
+    <br>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-3"><h4>Pending Requests:</h4></div>
+    </div>
+
+    
+    {% for request in pending_requests %}
+    <div class="container">
+        <div class="row" align="center">
+            {% for book in books %}
+            {% if book.book_id == request.book_id %}
+            <div class="col-4" style="font-size: 22px;">Book Name: {{ book.book_name }}</div>
+            {% endif %}
+            {% endfor %}
+
+            {% for user in users %}
+            {% if user.id == request.user_id %}
+            <div class="col-3" style="font-size: 22px;">User: {{ user.username }}</div>
+            {% endif %}
+            {% endfor %}
+            
+            <div class="col-2" style="font-size: 22px;">No of Days: {{ request.no_of_days }}</div>
+            <div class="col-1"></div>
+            <div class="col-1">
+                <!-- Accept Button Form -->
+                <form action="{{ url_for('accept_request') }}" method="post">
+                    <!-- Hidden input fields for request details -->
+                    <input type="hidden" name="req_id" value="{{ request.req_id }}">
+                    <input type="hidden" name="user_id" value="{{ request.user_id }}">
+                    <input type="hidden" name="book_id" value="{{ request.book_id }}">
+                    <input type="hidden" name="no_of_days" value="{{ request.no_of_days }}">
+                    <button type="submit" class="btn btn-success">Accept</button>
+                </form>
+            </div>
+            <div class="col-1">
+                <form action="/reject-request" method="POST">
+                    <input type="hidden" name="req_id" value="{{ request.req_id }}">
+                    <button type="submit" class="btn btn-danger">Reject</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    
+    <br>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-3"><h4>Granted Requests:</h4></div>
+    </div>
+
+    {% for request in granted_requests %}
+    <div class="container" style="background-color: lightgreen;">
+        <div class="row">
+
+            {% for book in books %}
+                {% if book.book_id == request.book_id %}
+                    <div class="col-3" style="font-size: 22px;">Book Name: {{ book.book_name }}</div>
+                {% endif %}
+            {% endfor %}
+
+            {% for user in users %}
+                {% if user.id == request.user_id %}
+                    <div class="col-2" style="font-size: 22px;">User: {{ user.username }}</div>
+                {% endif %}
+            {% endfor %}
+
+            <div class="col-3" style="font-size: 22px;">Issued Date: {{ request.date_issued.strftime('%d.%m.%Y') }}</div>
+            <div class="col-3" style="font-size: 22px;">Return Date: {{ request.return_date.strftime('%d.%m.%Y') }}</div>
+
+            <div class="col-1">
+                <form action="/revoke-request/{{ request.req_id }}" method="POST">
+                    <button type="submit" class="btn btn-danger">Revoke</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    {% endfor %}
+
+ 
+    <br>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-3"><h4>Completed Requests:</h4></div>
+    </div>
+
+    {% for request in completed_requests %}
+    <div class="container" style="background-color: lightpink;">
+    <div class="row">
+            {% for book in books %}
+                {% if book.book_id == request.book_id %}
+                    <div class="col-4" style="font-size: 22px;">Book Name: {{ book.book_name }}</div>
+                {% endif %}
+            {% endfor %}
+
+
+            {% for user in users %}
+                {% if user.id == request.user_id %}
+                    <div class="col-2" style="font-size: 22px;">User: {{ user.username }}</div>
+                {% endif %}
+            {% endfor %}
+
+            <div class="col-3" style="font-size: 22px;">Issued Date: {{ request.date_issued.strftime('%d.%m.%Y') }}</div>
+            <div class="col-3" style="font-size: 22px;">Return Date: {{ request.date_returned.strftime('%d.%m.%Y') }}</div>
+    </div>
+    </div>
+    {% endfor %}
+
+
+</div>
+
+</div>
+
+</body>
+</html>
